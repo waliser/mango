@@ -18,7 +18,7 @@ pip install .
 Arch (AUR):
 
 ```
-yay -S mango
+yay -S mango-tui
 ```
 
 Then run `mango` (or `mango-tui`, same thing).

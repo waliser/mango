@@ -1,4 +1,4 @@
-pkgbase = mango
+pkgbase = mango-tui
 	pkgdesc = Terminal manga reader for kitty, backed by MangaDex
 	pkgver = 0.1.0
 	pkgrel = 1
@@ -15,7 +15,7 @@ pkgbase = mango
 	depends = python-pillow
 	depends = python-textual-image
 	depends = kitty
-	source = mango-0.1.0.tar.gz::https://github.com/waliser/mango/archive/refs/tags/v0.1.0.tar.gz
-	sha256sums = SKIP
+	source = mango-tui-0.1.0.tar.gz::https://github.com/waliser/mango/archive/refs/tags/v0.1.0.tar.gz
+	sha256sums = 6062b469c41c3bc7988f6950a22d93f67cafbcb049ee956b876bbc7dda1289aa
 
-pkgname = mango
+pkgname = mango-tui

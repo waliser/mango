@@ -1,10 +1,10 @@
 # Maintainer: waliser <89495658+waliser@users.noreply.github.com>
 
-# Note: there may already be a package named "mango" on the AUR. Check
-# https://aur.archlinux.org/packages/mango first; if it's taken, rename this
-# to something like mango-tui and update pkgname accordingly.
+# Packaged as mango-tui because the name "mango" is already used by an
+# unrelated package on the AUR.
 
-pkgname=mango
+_gitname=mango
+pkgname=mango-tui
 pkgver=0.1.0
 pkgrel=1
 pkgdesc='Terminal manga reader for kitty, backed by MangaDex'
@@ -16,20 +16,23 @@ depends=(
   'python-textual'
   'python-httpx'
   'python-pillow'
-  'python-textual-image' # not in the official repos; may need its own AUR package
+  'python-textual-image' # from the AUR
   'kitty'                # required at runtime for the graphics protocol
 )
 makedepends=('python-build' 'python-installer' 'python-wheel' 'python-setuptools')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('SKIP') # run `updpkgsums` once the v0.1.0 tarball is publicly reachable
+sha256sums=('6062b469c41c3bc7988f6950a22d93f67cafbcb049ee956b876bbc7dda1289aa')
 
 build() {
-  cd "$pkgname-$pkgver"
+  cd "$_gitname-$pkgver"
   python -m build --wheel --no-isolation
 }
 
 package() {
-  cd "$pkgname-$pkgver"
+  cd "$_gitname-$pkgver"
   python -m installer --destdir="$pkgdir" dist/*.whl
+  # the project also ships a `mango` entry point; drop it so we don't clash
+  # with the existing AUR package that owns /usr/bin/mango.
+  rm -f "$pkgdir/usr/bin/mango"
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }

@@ -1,0 +1,35 @@
+# Maintainer: waliser <89495658+waliser@users.noreply.github.com>
+
+# Note: there may already be a package named "mango" on the AUR. Check
+# https://aur.archlinux.org/packages/mango first; if it's taken, rename this
+# to something like mango-tui and update pkgname accordingly.
+
+pkgname=mango
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='Terminal manga reader for kitty, backed by MangaDex'
+arch=('any')
+url='https://github.com/waliser/mango'
+license=('MIT')
+depends=(
+  'python'
+  'python-textual'
+  'python-httpx'
+  'python-pillow'
+  'python-textual-image' # not in the official repos; may need its own AUR package
+  'kitty'                # required at runtime for the graphics protocol
+)
+makedepends=('python-build' 'python-installer' 'python-wheel' 'python-setuptools')
+source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
+sha256sums=('SKIP') # run `updpkgsums` once the v0.1.0 tarball is publicly reachable
+
+build() {
+  cd "$pkgname-$pkgver"
+  python -m build --wheel --no-isolation
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

@@ -1,0 +1,32 @@
+[project]
+name = "mango"
+version = "0.1.0"
+description = "Terminal manga reader for kitty"
+requires-python = ">=3.12"
+dependencies = [
+    "textual>=0.80",
+    "httpx>=0.27",
+    "textual-image>=0.7",
+    "pillow>=10",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "respx>=0.21", "ruff>=0.6"]
+
+[project.scripts]
+mango = "mango.__main__:main"
+mango-tui = "mango.__main__:main"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.setuptools.packages.find]
+include = ["mango*"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"

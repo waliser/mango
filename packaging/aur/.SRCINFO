@@ -1,0 +1,21 @@
+pkgbase = mango
+	pkgdesc = Terminal manga reader for kitty, backed by MangaDex
+	pkgver = 0.1.0
+	pkgrel = 1
+	url = https://github.com/waliser/mango
+	arch = any
+	license = MIT
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-wheel
+	makedepends = python-setuptools
+	depends = python
+	depends = python-textual
+	depends = python-httpx
+	depends = python-pillow
+	depends = python-textual-image
+	depends = kitty
+	source = mango-0.1.0.tar.gz::https://github.com/waliser/mango/archive/refs/tags/v0.1.0.tar.gz
+	sha256sums = SKIP
+
+pkgname = mango
